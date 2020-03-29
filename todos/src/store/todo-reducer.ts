@@ -1,24 +1,29 @@
 
+import {TodoState ,initalTodoState} from './todo-state';
 import TodoItem from '../TodoItem';
+import {DispatchAction,ActionType} from './todo-actions'
 
-export interface TodoState {
-    items:TodoItem[];
-}
-export const ADD_TODO="ADD_TODO";
-interface AddTodoAction{
-   type: typeof ADD_TODO;
-   data:String;
-}
 
-export type TodoActionType = AddTodoAction;
+export const todoReducer =(state=initalTodoState,action:DispatchAction):TodoState=>{
+   switch (action.type) {
+      case ActionType.ADD_TODO: {         
+         const count= state.items.length;
+         const newTask: TodoItem=  {
+             id:count+1,
+             task:action.payload.task,
+             isCompleted:false
+         };
+         return {...state, items:[...state.items, newTask]};         
+      }
+      case ActionType.COMPLETE_TODO:{
+         const {id} = action.payload;                
+         return {...state, items:state.items.map(
+            t => t.id===id ?{...t,isCompleted:!t.isCompleted} :t
+            )};      
+      } 
+         
+      default:
+        return initalTodoState;
+   }     
 
-export const initalTodoState:TodoState={
-    items:[
-                {id:1, task :"this is my first todo !",isCompleted:true},
-                {id:2, task :"this is my second todo !",isCompleted:false}
-          ]
-}
-
-export const todoReducer =(state=initalTodoState,action:TodoActionType):TodoState=>{
-   return initalTodoState;
 }
