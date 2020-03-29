@@ -3,7 +3,7 @@ import TodoItem from './TodoItem'
 
 interface TodoProps {
     todo:TodoItem;
-    updateTodo:(id:number)=>void;
+    updateTodo:(id:number,completed:boolean)=>void;
 }
 
 const Todo  = (props:TodoProps)=>{ 
@@ -16,7 +16,7 @@ const Todo  = (props:TodoProps)=>{
             <div className="bg-white border h-5 w-5 rounded border-gray-400 flex flex-shrink-0 justify-center items-center">  
                 <input type="checkbox" className=" opacity-0 absolute" 
                                 checked={isCompleted} value={id}
-                                  onChange={()=>{props.updateTodo(id);setState(!checked);}}/>
+                                  onChange={()=>{props.updateTodo(id,!checked);setState(!checked);}}/>
                 <svg className={svgDisplay} viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
            </div>
            <span className="pl-2 text-gray-800">{todo.task}</span>

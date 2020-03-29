@@ -1,5 +1,5 @@
 
-import {TodoState ,initalTodoState} from './todo-state';
+import {TodoState ,initalTodoState, SummaryState, initalSummaryState} from './todo-state';
 import TodoItem from '../TodoItem';
 import {DispatchAction,ActionType} from './todo-actions'
 
@@ -23,7 +23,27 @@ export const todoReducer =(state=initalTodoState,action:DispatchAction):TodoStat
       } 
          
       default:
-        return initalTodoState;
+        return state;
    }     
+  
+}
 
+export const summaryReducer= (state=initalSummaryState, action :DispatchAction):SummaryState=>{
+   switch (action.type) {
+      case ActionType.ADD_TODO: 
+         
+         return {
+            ...state,
+            total:state.total+1,
+            todo:state.todo+1,
+            
+         }
+      case ActionType.COMPLETE_TODO:        
+         return {
+            ...state,
+            todo:action.payload.completed?state.todo-1:state.todo+1,
+            completed:action.payload.completed?state.completed+1:state.completed-1,            
+         }
+      default: return state;
+   }
 }

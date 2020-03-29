@@ -8,3 +8,19 @@ export const initalTodoState:TodoState={
                 {id:2, task :"this is my second todo !",isCompleted:false}
           ]
 }
+export interface SummaryState{
+    total:number;
+    completed:number;
+    todo:number;
+}
+export const initalSummaryState:SummaryState={
+    total:2,
+    completed:1,
+    todo:1
+}
+
+
+
+
+
+

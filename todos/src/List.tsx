@@ -10,11 +10,12 @@ type ListProps ={
 
 const List = (props :ListProps)=>{    
       const dispatch= useDispatch();
-      const updateTodo=(id:number)=>{
+      const updateTodo=(id:number, completed:boolean)=>{
          const action:DispatchAction= {
              type:ActionType.COMPLETE_TODO,
              payload:{
-                 id
+                 id,
+                 completed
              }            
          }
          dispatch(action);

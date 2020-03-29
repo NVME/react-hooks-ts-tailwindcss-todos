@@ -1,16 +1,20 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import TodoItem from './TodoItem';
-
-interface todosStore{
-    todos:{ items:TodoItem[]}
+interface summaryStore{
+   summary: {
+        total:number;
+        completed:number;
+        todo:number
+    }
+   
   }
 export const Summary=()=>{
-    const  todos=useSelector((state:todosStore)=> state.todos.items);   
-    
+    const  summary=useSelector((state:summaryStore)=> state.summary); 
+    console.log(summary);
     return (
         <div className=" text-gray-700 p-2 ">
-           Total: {todos.length} | Completed: {todos.filter(t=>t.isCompleted).length} | Todo:{todos.filter(t=>t.isCompleted).length}
+           Total: {summary.total} | Completed: {summary.completed} | Todo:{summary.todo}
         </div>
     )
 }

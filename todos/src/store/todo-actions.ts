@@ -2,7 +2,8 @@ import {Action} from 'redux'
 
 interface ActionParemeters {
     task:String,
-    id:number
+    id:number,
+    completed:boolean
 }
 
 export interface DispatchAction extends Action<ActionType> {
