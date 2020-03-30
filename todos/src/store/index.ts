@@ -1,8 +1,6 @@
-import  rootReducer from './root-reducer';
+import  { rootReducer} from './root-reducer';
 import {createStore} from 'redux';
-import {TodoState } from './todo-state';
- const store=createStore(rootReducer);
-export {
-    store,
-    TodoState
-}
+
+ export const store=createStore(rootReducer);
+ export type RootState = ReturnType<typeof rootReducer>
+

@@ -4,17 +4,17 @@ import Add from "./Add";
 import List from './List';
 import TodoItem from './TodoItem';
 import Redux from 'redux';
-import {store} from './store';
+import {store ,RootState} from './store';
 import { Provider, useSelector} from "react-redux";
 import { Summary } from "./Summary";
 
-interface todosStore{
-  todos:{ items:TodoItem[]}
-}
+// interface todosStore{
+//   todos:{ items:TodoItem[]}
+// }
 
 function App()
 {
-    const  todos=useSelector((state:todosStore)=> state.todos.items);    
+    const  todos=useSelector((state:RootState)=> state.todos.items);    
     return (
       <div className="flex justify-center items-center"> 
            <div className="m-5"  >
